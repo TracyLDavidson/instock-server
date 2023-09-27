@@ -1,11 +1,11 @@
-require('dotenv').config();
+require("dotenv").config();
 // Update with your config settings.
 
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 module.exports = {
-  client: 'mysql',
+  client: process.env.DB_CLIENT,
   connection: {
     host: process.env.DB_HOST,
     database: process.env.DB_NAME,
