@@ -1,8 +1,8 @@
-const express = require('express')
-const cors = require('cors')
-const app = express()
-app.use(cors())
-app.use(express.json())
+const express = require("express");
+const cors = require("cors");
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 // const API_VERSION = process.env.VERSION || 'v1'
 require("dotenv").config();
@@ -10,8 +10,13 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5050;
 
 //warehouses
+<<<<<<< HEAD
 const warehousesRoutes = require('./routes/warehouses-routes')
 app.use(`/warehouses`, warehousesRoutes)
+=======
+const warehousesRoutes = require("./routes/warehouses-routes");
+app.use(`/warehouses`, warehousesRoutes);
+>>>>>>> develop
 
 //inventory
 const inventoryRoutes = require("./routes/inventory-routes");
