@@ -10,13 +10,8 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5050;
 
 //warehouses
-<<<<<<< HEAD
 const warehousesRoutes = require('./routes/warehouses-routes')
 app.use(`/warehouses`, warehousesRoutes)
-=======
-const warehousesRoutes = require("./routes/warehouses-routes");
-app.use(`/warehouses`, warehousesRoutes);
->>>>>>> develop
 
 //inventory
 const inventoryRoutes = require("./routes/inventory-routes");
