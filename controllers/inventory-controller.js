@@ -29,7 +29,57 @@ const getSingleInventory = (req, res) => {
     });
 };
 
+//CREATE a new inventory:
+const createInventory = (req, res) => {
+  const { warehouse_id, item_name, description, category, status, quantity } =
+    req.body;
+
+  // Validate request body
+  if (
+    !warehouse_id ||
+    !item_name ||
+    !description ||
+    !category ||
+    !status ||
+    quantity === undefined
+  ) {
+    return res.status(400).send("All values are required.");
+  }
+
+  if (typeof quantity !== "number" || quantity < 0) {
+    return res.status(400).send("Quantity must be a non-negative number.");
+  }
+
+  // Check if the provided warehouse_id already exists in the warehouse table
+  knex("warehouses")
+    .where({ id: warehouse_id })
+    .first()
+    .then((warehouse) => {
+      if (!warehouse) {
+        return res.status(400).send("Invalid warehouse_id.");
+      }
+
+      // insert new inventory item
+      return knex("inventories")
+        .insert({
+          warehouse_id,
+          item_name,
+          description,
+          category,
+          status,
+          quantity,
+        })
+        .returning("*");
+    })
+    .then((inventories) => {
+      const [inventory] = inventories;
+      res.status(201).json(inventory);
+    })
+    .catch((err) => res.status(400).send(`Error: ${err}`));
+};
+
 module.exports = {
   getAllInventory,
   getSingleInventory,
+  createInventory,
 };
