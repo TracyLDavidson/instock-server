@@ -10,13 +10,16 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5050;
 
 //warehouses
-const warehousesRoutes = require('./routes/warehousesRoutes')
+const warehousesRoutes = require('./routes/warehouses-routes')
 app.use(`/warehouses`, warehousesRoutes)
-
 
 //inventory
 const inventoryRoutes = require("./routes/inventory-routes");
 app.use("/inventory", inventoryRoutes);
+
+//categories
+const categoriesRoutes = require("./routes/categories-routes");
+app.use("/categories", categoriesRoutes);
 
 app.listen(PORT, () => {
   console.log(`running at http://localhost:${PORT}`);
