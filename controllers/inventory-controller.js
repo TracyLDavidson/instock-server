@@ -29,6 +29,22 @@ const getSingleInventory = (req, res) => {
     });
 };
 
+const getWarehouseInventory = (req, res) => {
+  knex
+    .select("*")
+    .from("inventories")
+    .where({ warehouse_id: req.params.warehouse_id })
+    .then((inventories) => {
+      if (inventories.length === 0) {
+        return res.json([]);
+      }
+      res.status(200).json(inventories);
+    })
+    .catch(() => {
+      res.sendStatus(500);
+    });
+};
+
 //CREATE a new inventory:
 const createInventory = (req, res) => {
   const { warehouse_id, item_name, description, category, status, quantity } =
@@ -81,5 +97,6 @@ const createInventory = (req, res) => {
 module.exports = {
   getAllInventory,
   getSingleInventory,
+  getWarehouseInventory,
   createInventory,
 };
