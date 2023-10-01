@@ -11,18 +11,18 @@ const getXUniqueCategories = (_req, res) => {
 };
 
 const getUniqueCategories = (_req, res) => {
-    knex("inventories")
-    .distinct('category')
-    .from('inventories')
+  knex("inventories")
+    .distinct("category")
+    .from("inventories")
     .then((categories) => {
-        res.json(categories)
+      res.json(categories);
     })
     .catch((error) => {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error'});
+      console.error(error);
+      res.status(500).json({ error: "Internal Server Error" });
     });
-}
+};
 
 module.exports = {
-    getUniqueCategories
-  };
+  getUniqueCategories,
+};
