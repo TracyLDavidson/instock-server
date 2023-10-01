@@ -30,17 +30,6 @@ const getSingleWarehouse = (req, res) => {
 };
 
 const addSingleWarehouse = (req, res) => {
-  console.log("post server reached");
-
-  console.log(!req.body.warehouse_name);
-  console.log(!req.body.address);
-  console.log(!req.body.city);
-  console.log(!req.body.country);
-  console.log(!req.body.contact_name);
-  console.log(!req.body.contact_position);
-  console.log(!req.body.contact_phone);
-  console.log(!req.body.contact_email);
-
   if (
     !req.body.warehouse_name ||
     !req.body.address ||
@@ -53,8 +42,6 @@ const addSingleWarehouse = (req, res) => {
   ) {
     return res.status(400).send("Please provide all details in the request");
   }
-
-  console.log(req.body);
 
   knex
     .select("*")
@@ -72,18 +59,6 @@ const addSingleWarehouse = (req, res) => {
 };
 
 const editSingleWarehouse = (req, res) => {
-  console.log("edit server reached");
-  console.log(req.params.warehouseID);
-
-  console.log(!req.body.warehouse_name);
-  console.log(!req.body.address);
-  console.log(!req.body.city);
-  console.log(!req.body.country);
-  console.log(!req.body.contact_name);
-  console.log(!req.body.contact_position);
-  console.log(!req.body.contact_phone);
-  console.log(!req.body.contact_email);
-
   if (
     !req.body.warehouse_name ||
     !req.body.address ||
@@ -96,8 +71,6 @@ const editSingleWarehouse = (req, res) => {
   ) {
     return res.status(400).send("Please provide all details in the request");
   }
-
-  console.log(req.body);
 
   knex
     .select("*")
