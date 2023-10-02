@@ -94,9 +94,21 @@ const createInventory = (req, res) => {
     .catch((err) => res.status(400).send(`Error: ${err}`));
 };
 
+const deleteSingleInventory = (req, res) => {
+  knex("inventories")
+    .delete()
+    .where({ id: req.params.id })
+    .then((data) => {
+      console.log(data)
+      res.send("Item deleted").status(200)
+    })
+}
+
+
 module.exports = {
   getAllInventory,
   getSingleInventory,
   getWarehouseInventory,
   createInventory,
+  deleteSingleInventory,
 };
