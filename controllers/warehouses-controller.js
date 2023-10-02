@@ -29,6 +29,25 @@ const getSingleWarehouse = (req, res) => {
     });
 };
 
+// delete a single warehouse
+const deleteSingleWarehouse = (req, res) => {
+  knex
+    .select("*")
+    .from("warehouses")
+    .where({ id: req.params.id })
+    .del()
+    .then((warehouses) => {
+      if (warehouses.length === 0) {
+        // if no warehouse is found with the given id
+        return res.status(404).send("Warehouse not found");
+      }
+      res.status(200).send();
+    })
+    .catch(() => {
+      res.sendStatus(400);
+    });
+};
+
 const addSingleWarehouse = (req, res) => {
   if (
     !req.body.warehouse_name ||
@@ -91,6 +110,7 @@ const editSingleWarehouse = (req, res) => {
 module.exports = {
   getAllWarehouses,
   getSingleWarehouse,
+  deleteSingleWarehouse,
   addSingleWarehouse,
   editSingleWarehouse,
 };
