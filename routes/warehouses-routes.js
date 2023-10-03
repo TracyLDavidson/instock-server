@@ -5,6 +5,7 @@ const fs = require("fs");
 const {
   getAllWarehouses,
   getSingleWarehouse,
+  deleteSingleWarehouse,
   addSingleWarehouse,
   editSingleWarehouse,
 } = require("../controllers/warehouses-controller");
@@ -14,6 +15,9 @@ router.route("/").get(getAllWarehouses);
 
 //get single warehouse:
 router.route("/:id").get(getSingleWarehouse);
+
+//delete single warehouse:
+router.route("/:id").delete(deleteSingleWarehouse);
 
 //post single warehouse:
 router.route("/add").post(addSingleWarehouse);
