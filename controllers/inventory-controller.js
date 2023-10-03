@@ -99,11 +99,22 @@ const deleteSingleInventory = (req, res) => {
     .delete()
     .where({ id: req.params.id })
     .then((data) => {
-      console.log(data)
-      res.send("Item deleted").status(200)
-    })
-}
+      console.log(data);
+      res.send("Item deleted").status(200);
+    });
+};
 
+const updateSingleInventory = (req, res) => {
+  knex("inventories")
+    .select("*")
+    .from("inventories")
+    .where({ id: req.params.id })
+    .update(req.body)
+    .then((data) => {
+      console.log(data);
+      res.send("Item updated").status(200);
+    });
+};
 
 module.exports = {
   getAllInventory,
@@ -111,4 +122,5 @@ module.exports = {
   getWarehouseInventory,
   createInventory,
   deleteSingleInventory,
+  updateSingleInventory,
 };

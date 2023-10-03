@@ -5,7 +5,8 @@ const {
   getSingleInventory,
   getWarehouseInventory,
   createInventory,
-  deleteSingleInventory
+  deleteSingleInventory,
+  updateSingleInventory,
 } = require("../controllers/inventory-controller");
 
 //get all inventories
@@ -19,6 +20,9 @@ router.route("/:id").get(getSingleInventory);
 
 // POST a new inventory
 router.route("/").post(createInventory);
+
+// PUT a new inventory
+router.route("/:id").put(updateSingleInventory);
 
 // delete an inventory item
 router.route("/:id").delete(deleteSingleInventory);
